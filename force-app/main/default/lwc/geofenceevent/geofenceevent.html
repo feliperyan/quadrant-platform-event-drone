@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Geofencing - b" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Channel Name" value={channelName}
+                onchange={handleChannelName}></lightning-input>
+            <br/>
+            <lightning-button variant="success" label="Subscribe" title="Subscribe"
+                onclick={handleSubscribe} disabled={isSubscribeDisabled}
+                class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="destructive" label="Unsubscribe" title="Unsubscribe"
+                onclick={handleUnsubscribe} disabled={isUnsubscribeDisabled}
+                class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </lightning-card>
+    <br/>
+    <template for:each={allMessages} for:item="msg">
+        <lightning-card key={msg.data.payload.CreatedDate} title={msg.data.event.replayId} icon-name="custom:custom14">
+            <div class="slds-m-around_medium">
+                Drone ID: {msg.data.payload.DroneID__c} <br/>
+                Quadrantd ID: {msg.data.payload.QuadrantID__c}
+            </div>
+        </lightning-card>        
+    </template>
+    
+</template>
